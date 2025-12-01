@@ -1,0 +1,66 @@
+// https://dbdiagram.io/
+
+
+
+//==------------------------------------------------------------------==\\
+//==------------------------------------------------------------------==\\
+
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table Users {
+  user_id integer [primary key, increment]
+  username varchar [not null, unique]
+  email varchar [not null, unique]
+  password_hash varchar [not null]
+  created_at timestamp [default: `now()`]
+}
+
+Table Sessions {
+  session_id integer [primary key, increment]
+  user_id integer [not null]
+  token varchar [not null, unique]
+  expires_at timestamp [not null]
+  created_at timestamp [default: `now()`]
+}
+
+Table Songs {
+  song_id integer [primary key, increment]
+  spotify_id varchar [not null, unique] // Crucial: Prevents duplicate songs
+  title varchar [not null]
+  artist varchar [not null]
+  album varchar
+}
+
+Table UserSongFavorites {
+  user_id integer [not null]
+  song_id integer [not null]
+  added_at timestamp [default: `now()`]
+  
+  // Composite Primary Key: A user can't favorite the same song twice
+  indexes {
+    (user_id, song_id) [pk]
+  }
+}
+
+Table Recommendations {
+  // Removed 'recommendation_id'
+  user_id integer [not null]
+  song_id integer [not null]
+  score decimal(5, 2)
+  generated_at timestamp [default: `now()`]
+
+  // Composite Primary Key: Prevents recommending the same song twice to the same user
+  indexes {
+    (user_id, song_id) [pk]
+  }
+}
+
+// Relationships
+Ref: Sessions.user_id > Users.user_id [delete: cascade]
+Ref: UserSongFavorites.user_id > Users.user_id [delete: cascade]
+Ref: UserSongFavorites.song_id > Songs.song_id [delete: cascade]
+Ref: Recommendations.user_id > Users.user_id [delete: cascade]
+Ref: Recommendations.song_id > Songs.song_id [delete: cascade]
+
