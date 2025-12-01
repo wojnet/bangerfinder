@@ -16,7 +16,7 @@ export default function Home() {
           src={SpotifyIcon}
           alt="Spotify icon"
           iconHeight={24}
-          href="#"
+          href="/dashboard"
         />
         <Image
           className="rounded-2xl opacity-70"
@@ -25,7 +25,7 @@ export default function Home() {
           height={200}
         />
       </div>
-      <div className="w-full max-w-[1000px] flex justify-center gap-10 mx-auto">
+      <div className="w-full max-w-[1000px] flex flex-col md:flex-row md:justify-center gap-10 mx-auto">
         <LandingImageCard
           src={ImageSkeleton}
           alt="Image skeleton"
