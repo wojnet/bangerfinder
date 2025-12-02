@@ -17,6 +17,7 @@ export default function Home() {
           alt="Spotify icon"
           iconHeight={24}
           href="/dashboard"
+          text="Join now!"
         />
         <Image
           className="rounded-2xl opacity-70"

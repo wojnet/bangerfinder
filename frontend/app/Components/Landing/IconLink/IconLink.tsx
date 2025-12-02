@@ -6,13 +6,15 @@ interface IconLinkProps {
   alt: string,
   iconHeight: number,
   href: string,
+  text: string,
 }
 
 const IconLink: FC<IconLinkProps> = ({
   src,
   alt,
   iconHeight,
-  href
+  href,
+  text
 }) => {
   return (
     <a
@@ -24,7 +26,9 @@ const IconLink: FC<IconLinkProps> = ({
         alt={alt}
         height={iconHeight}
       />
-      <p className="font-josefin-sans mr-[6px]">Join now!</p>
+      <p className="font-josefin-sans mr-[6px]">
+        {text}
+      </p>
     </a>
   );
 }
