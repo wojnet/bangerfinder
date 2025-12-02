@@ -2,21 +2,13 @@
 import { useState } from "react";
 import Workspace from "../Components/Dashboard/Workspace";
 import Header from "../Components/UI/Header/Header";
-
-interface IRecommendation {
-  songId: number;
-  spotifyId: number;
-  title: string;
-  artist: string;
-  album: string;
-  cover: string;
-}
+import { TSong } from "../Types/Song";
 
 const Dashboard = () => {
-  const [recommendations, setRecommendations] = useState<IRecommendation[]>([]);
+  const [recommendations, setRecommendations] = useState<TSong[]>([]);
 
   const getRecommendations = () => {
-    const recommendations: IRecommendation[] = [
+    const recommendations: TSong[] = [
       {
         songId: 0,
         spotifyId: 123465,
@@ -27,7 +19,7 @@ const Dashboard = () => {
       }
     ];
 
-    setRecommendations(prev => [...prev, recommendations]);
+    setRecommendations(prev => [...prev, ...recommendations]);
   }
 
   return (
@@ -35,6 +27,7 @@ const Dashboard = () => {
       <Header />
       <Workspace
         onGetRecommendations={getRecommendations}
+        recommendations={recommendations}
       />
     </>
   );
