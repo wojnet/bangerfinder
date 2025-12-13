@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Verification Error";
+}
+
+<div class="alert alert-danger mt-5">
+    <h4>Verification Failed</h4>
+    <p>@ViewBag.Message</p>
+    <a asp-action="Login" class="btn btn-secondary">Back to Login</a>
+</div>

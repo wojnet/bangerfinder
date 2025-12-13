@@ -1,0 +1,38 @@
+﻿@model FinalAppTemplate.ViewModels.LoginVM
+@{
+    ViewData["Title"] = "Log in";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<form asp-action="Login" method="post">
+
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+    <div class="form-group">
+        <label for="LoginInput">Login/Mail</label>
+        <input type="text" class="form-control" asp-for="LoginInput" />
+        <span asp-validation-for="LoginInput" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="password" class="form-control" asp-for="Password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    <a asp-controller="UserCreation" asp-action="MainPage" class="btn btn-secondary mt-3">Back</a>
+
+    <div class="mt-3 text-center">
+        <span class="text-muted">Did not receive the email?</span>
+        <a asp-action="ResendVerification" class="fw-bold">Resend Verification Link</a>
+    </div>
+
+</form>
