@@ -1,13 +1,18 @@
--- 1. Users Table
+-- 1. Users Table (Updated)
 CREATE TABLE Users (
     user_id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
     username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
+    
+    -- Coloane noi adaugate:
+    is_verified BOOLEAN NOT NULL DEFAULT FALSE, -- Corespunde cu bool in C#
+    verification_token VARCHAR(100),            -- Poate fi NULL
+    
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     -- SIMPLE, READABLE CONSTRAINT (Oracle Style)
-    -- Checks if email contains an '@' and a '.'
     CONSTRAINT check_email_format CHECK (email LIKE '%@%.%')
 );
 
