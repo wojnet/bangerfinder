@@ -22,3 +22,7 @@ appsettings.Development.json
 # --- OS Specific ---
 .DS_Store
 Thumbs.db
+
+# --- Temporary Build Artifacts ---
+BuildHost-*/
+BuildHost-net*/
