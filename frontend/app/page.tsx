@@ -7,11 +7,13 @@ import Link from "next/link";
 import IconButton from "./Components/UI/Buttons/IconButton";
 import AtIcon from "./Components/UI/Icons/AtIcon";
 import LoginIcon from "./Components/UI/Icons/LoginIcon";
+import { AuthRedirectIfAuthenticated } from "./Components/Authentication/AuthRedirect";
 
 export default function Home() {
   return (
     <div className="w-full min-h-screen flex flex-col items-center bg-zinc-100 font-sans">
       <LandingHeader />
+      <AuthRedirectIfAuthenticated path="/dashboard" />
       <div className="h-[450px] flex flex-col items-center gap-5">
         <section className="flex gap-5">
           <Link href="/register">

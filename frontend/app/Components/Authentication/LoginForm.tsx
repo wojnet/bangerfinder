@@ -6,6 +6,7 @@ import Submit from '../UI/FormComponents/Submit';
 import { LoginDto } from '@/app/Types/User';
 import { loginUser } from '@/app/lib/api/user';
 import { useRouter } from 'next/navigation';
+import { AuthRedirectIfAuthenticated } from './AuthRedirect';
 
 const initialFormData: LoginDto = {
   loginInput: "",
@@ -47,33 +48,36 @@ const LoginForm: FC = ({}) => {
   }
 
   return (
-    <form
-      className="flex flex-col items-center gap-3"
-      onKeyDown={(e) => {
-        if (e.key === "Enter") {
-          handleLogin(e);
-        }
-      }}
-    >
-      <Input
-        placeholder="email or username"
-        onChange={(e) => changeFormDataField("loginInput", e.target.value)}
-        disabled={isLoading}
-      />
-      <PasswordInput
-        placeholder="password"
-        onChange={(e) => changeFormDataField("password", e.target.value)}
-        disabled={isLoading}
-      />
-      <br />
-      <Submit
-        label="Login"
-        onClick={(e) => {
-          handleLogin(e);
+    <>
+      <AuthRedirectIfAuthenticated path="/dashboard" />
+      <form
+        className="flex flex-col items-center gap-3"
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleLogin(e);
+          }
         }}
-        disabled={isLoading}
-      />
-    </form>
+      >
+        <Input
+          placeholder="email or username"
+          onChange={(e) => changeFormDataField("loginInput", e.target.value)}
+          disabled={isLoading}
+        />
+        <PasswordInput
+          placeholder="password"
+          onChange={(e) => changeFormDataField("password", e.target.value)}
+          disabled={isLoading}
+        />
+        <br />
+        <Submit
+          label="Login"
+          onClick={(e) => {
+            handleLogin(e);
+          }}
+          disabled={isLoading}
+        />
+      </form>
+    </>
   );
 }
 

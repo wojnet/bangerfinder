@@ -5,6 +5,7 @@ import PasswordInput from '../UI/FormComponents/PasswordInput';
 import Submit from '../UI/FormComponents/Submit';
 import { RegisterDto } from '@/app/Types/User';
 import { registerUser } from '@/app/lib/api/user';
+import { AuthRedirectIfAuthenticated } from './AuthRedirect';
 
 const initialFormData: RegisterDto = {
   name: "",
@@ -39,43 +40,46 @@ const RegisterForm: FC = ({}) => {
   }
 
   return (
-    <form
-      className="flex flex-col items-center gap-3"
-      onKeyDown={(e) => {
-        if (e.key === "Enter") {
-          handleRegister(e);
-        }
-      }}
-    >
-      <Input
-        placeholder="name"
-        onChange={(e) => changeFormDataField("name", e.target.value)}
-        disabled={isLoading}
-      />
-      <Input
-        placeholder="username"
-        onChange={(e) => changeFormDataField("username", e.target.value)}
-        disabled={isLoading}
-      />
-      <Input
-        placeholder="email"
-        onChange={(e) => changeFormDataField("email", e.target.value)}
-        disabled={isLoading}
-      />
-      <PasswordInput
-        placeholder="password"
-        onChange={(e) => changeFormDataField("password", e.target.value)}
-        disabled={isLoading}
-      />
-      <br />
-      <Submit
-        label="Register"
-        onClick={(e) => {
-          handleRegister(e);
+    <>
+      <AuthRedirectIfAuthenticated path="/dashboard" />
+      <form
+        className="flex flex-col items-center gap-3"
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleRegister(e);
+          }
         }}
-        disabled={isLoading}
-      />
-    </form>
+      >
+        <Input
+          placeholder="name"
+          onChange={(e) => changeFormDataField("name", e.target.value)}
+          disabled={isLoading}
+        />
+        <Input
+          placeholder="username"
+          onChange={(e) => changeFormDataField("username", e.target.value)}
+          disabled={isLoading}
+        />
+        <Input
+          placeholder="email"
+          onChange={(e) => changeFormDataField("email", e.target.value)}
+          disabled={isLoading}
+        />
+        <PasswordInput
+          placeholder="password"
+          onChange={(e) => changeFormDataField("password", e.target.value)}
+          disabled={isLoading}
+        />
+        <br />
+        <Submit
+          label="Register"
+          onClick={(e) => {
+            handleRegister(e);
+          }}
+          disabled={isLoading}
+        />
+      </form>
+    </>
   );
 }
 
