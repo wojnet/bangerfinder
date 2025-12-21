@@ -3,22 +3,31 @@ import LandingHeader from "./Components/Landing/LandingHeader/LandingHeader";
 import ImageSkeleton from "@assets/Icons/image-skeleton.svg";
 import LandingImageCard from "./Components/Landing/LandingImageCard/LandingImageCard";
 import PenguinGif from "@assets/Images/penguin.gif"
-import SpotifyIcon from "@assets/Icons/spotify-color-svgrepo-com.svg"
-import IconLink from "./Components/Landing/IconLink/IconLink";
+import Link from "next/link";
+import IconButton from "./Components/UI/Buttons/IconButton";
+import AtIcon from "./Components/UI/Icons/AtIcon";
+import LoginIcon from "./Components/UI/Icons/LoginIcon";
 
 export default function Home() {
   return (
     <div className="w-full min-h-screen flex flex-col items-center bg-zinc-100 font-sans">
       <LandingHeader />
       <div className="h-[450px] flex flex-col items-center gap-5">
-        <p className="text-center max-w-[350px]">💚 Dive into the deep rabbithole of undiscovered music! Click the button below:</p>
-        <IconLink
-          src={SpotifyIcon}
-          alt="Spotify icon"
-          iconHeight={24}
-          href="/dashboard"
-          text="Join now!"
-        />
+        <section className="flex gap-5">
+          <Link href="/register">
+            <IconButton
+              text="Register"
+              icon={<AtIcon />}
+            />
+          </Link>
+          <Link href="/login">
+            <IconButton
+              text="Log in"
+              icon={<LoginIcon />}
+            />
+          </Link>
+        </section>
+        <p className="text-center max-w-[350px]">💚 Dive into the deep rabbithole of undiscovered music!</p>
         <Image
           className="rounded-2xl opacity-70"
           src={PenguinGif}
