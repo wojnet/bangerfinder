@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Josefin_Sans } from "next/font/google";
+import { NextAuthProvider } from "./Providers";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,10 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${josefinSans.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${josefinSans.variable} antialiased`}>
+        <NextAuthProvider>
+          {children}
+        </NextAuthProvider>
       </body>
     </html>
   );

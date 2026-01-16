@@ -1,8 +1,8 @@
 export type TSong = {
-  songId: number,
-  spotifyId: number,
-  title: string,
-  artist: string,
-  album: string,
-  cover: string,
+  songId: number;
+  spotifyId: string;
+  title: string;
+  artist: string;
+  album: string;
+  cover: string;
 }
