@@ -1,0 +1,36 @@
+services:
+  # Database Service
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Banger@Finder2026
+    healthcheck:
+      test: [ "CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Banger@Finder2026", "-C", "-Q", "SELECT 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # ASP.NET Core Backend
+  backend:
+    build:
+      context: ./backend/src
+      dockerfile: bangerback.API/backend.dockerfile
+    environment:
+      # Match the name from your appsettings.json
+      - ConnectionStrings__DefaultConnectionString=Server=db,1433;Database=FinalAppTemplateDB;User Id=sa;Password=Banger@Finder2026;TrustServerCertificate=True
+
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5000:8080"
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: frontend.dockerfile # Specifies your custom filename
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend

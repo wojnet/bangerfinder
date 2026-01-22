@@ -1,0 +1,10 @@
+**/.git
+**/.vs
+**/.vscode
+**/bin
+**/obj
+**/*.user
+**/*.lock.json
+.dockerignore
+Dockerfile
+backend.dockerfile

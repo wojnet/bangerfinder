@@ -1,0 +1,34 @@
+# --- Build Results (NU vrem asta pe server) ---
+[Bb]in/
+[Oo]bj/
+/out/
+
+# --- Visual Studio Specific (Setari locale ale utilizatorului) ---
+.vs/
+*.user
+*.suo
+*.userosscache
+*.slnhistory
+*.docstates
+
+# --- VS Code ---
+.vscode/
+
+# --- Environment & Secrets (Securitate) ---
+# Ignoram setarile locale care pot contine parole sau API Keys
+appsettings.Local.json
+appsettings.Development.json
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
+
+# --- Temporary Build Artifacts ---
+BuildHost-*/
+BuildHost-net*/
+
+node_modules/
+.next/
+out/
+build/
+.env*.local

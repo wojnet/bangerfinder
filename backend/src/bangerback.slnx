@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="bangerback.API/bangerback.API.csproj" />
+  <Project Path="bangerback.Core/bangerback.Core.csproj" />
+  <Project Path="bangerback.Infrastructure/bangerback.Infrastructure.csproj" />
+</Solution>
